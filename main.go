@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net"
@@ -9,7 +10,7 @@ import (
 
 	"google.golang.org/grpc/reflection"
 
-	"microservice/proto/dep/core"
+	"microservice/proto/dep/go/core"
 
 	"google.golang.org/grpc"
 )
@@ -23,15 +24,14 @@ type blogItem struct {
 	Title    string
 }
 
-func (*server) ListBlog(req *core.ListBlogRequest, stream core.BlogService_ListBlogServer) error {
-	fmt.Println("List blog request")
-	stream.Send(&core.ListBlogResponse{Blog: &core.Blog{
+func (*server) GetBlog(ctx context.Context, req *core.GetBlogRequest) (*core.GetBlogResponse, error) {
+	fmt.Println("Get Blog request")
+	return &core.GetBlogResponse{Blog: &core.Blog{
 		Id:       1,
 		AuthorId: 1,
 		Title:    "My Title",
 		Content:  "My Content",
-	}})
-	return nil
+	}}, nil
 }
 
 func main() {

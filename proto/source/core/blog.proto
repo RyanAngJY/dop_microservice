@@ -3,20 +3,14 @@ syntax = "proto3";
 package core;
 
 message Blog {
-    int64 id = 1;
-    int64 author_id = 2;
-    string title = 3;
-    string content = 4;
+  int64 id = 1;
+  int64 author_id = 2;
+  string title = 3;
+  string content = 4;
 }
 
-message ListBlogRequest {
+message GetBlogRequest { int64 id = 1; }
 
-}
+message GetBlogResponse { Blog blog = 1; }
 
-message ListBlogResponse {
-    Blog blog = 1;
-}
-
-service BlogService {
-    rpc ListBlog (ListBlogRequest) returns (stream ListBlogResponse);
-}
+service BlogService { rpc GetBlog(GetBlogRequest) returns(GetBlogResponse); }

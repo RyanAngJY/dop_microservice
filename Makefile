@@ -9,5 +9,8 @@ push: # to be implemented
 build:
 	go build main.go
 
-run:
+start:
 	go run main.go
+
+dev_start:
+	make start
