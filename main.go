@@ -10,7 +10,7 @@ import (
 
 	"google.golang.org/grpc/reflection"
 
-	"microservice/proto/dep/go/core"
+	"microservice/proto/dep/microservice"
 
 	"google.golang.org/grpc"
 )
@@ -24,9 +24,9 @@ type blogItem struct {
 	Title    string
 }
 
-func (*server) GetBlog(ctx context.Context, req *core.GetBlogRequest) (*core.GetBlogResponse, error) {
+func (*server) GetBlog(ctx context.Context, req *microservice.GetBlogRequest) (*microservice.GetBlogResponse, error) {
 	fmt.Println("Get Blog request")
-	return &core.GetBlogResponse{Blog: &core.Blog{
+	return &microservice.GetBlogResponse{Blog: &microservice.Blog{
 		Id:       1,
 		AuthorId: 1,
 		Title:    "My Title",
@@ -44,7 +44,7 @@ func main() {
 
 	opts := []grpc.ServerOption{}
 	s := grpc.NewServer(opts...)
-	core.RegisterBlogServiceServer(s, &server{})
+	microservice.RegisterBlogServiceServer(s, &server{})
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 
