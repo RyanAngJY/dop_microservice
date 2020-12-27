@@ -13,7 +13,7 @@ start:
 dev_start:
 	go run main.go
 
-enter: # to enter the shell of the image
+shell: # to enter the shell of the image
 	make build
 	docker run -it $(IMAGE_NAME) /bin/sh
 
