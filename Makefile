@@ -1,20 +1,20 @@
 DEP_PROTO_DIR=./proto/dep/
 IMAGE_NAME=ryanang/microservice:latest
 
-push: # to be implemented
+build:
+	docker build -t $(IMAGE_NAME) .
+
+push_to_docker_hub: # to be implemented
 	echo "To be implemented"
 
-build:
-	go build main.go
-
 start:
-	go run main.go
+	docker-compose up --build
 
 dev_start:
-	make start
+	go run main.go
 
 enter: # to enter the shell of the image
-	docker build -t $(IMAGE_NAME) .
+	make build
 	docker run -it $(IMAGE_NAME) /bin/sh
 
 # ========= Proto installation and generation ===========
