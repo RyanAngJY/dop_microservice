@@ -21,7 +21,7 @@ shell: # to enter the shell of the image
 install_proto_common:
 	./proto/install_proto_common.sh
 
-gen: # Ryan TODO: By right, you are supposed to pull from the proto repository and compile instead of directly compiling from the source
+gen:
 	protoc -I=$(DEP_PROTO_DIR) --go_out=plugins=grpc:proto/dep $(DEP_PROTO_DIR)/*/*.proto
 
 install_gen:
