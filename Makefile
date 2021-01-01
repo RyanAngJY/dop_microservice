@@ -1,12 +1,14 @@
 DEP_PROTO_DIR=./proto/dep/
-IMAGE_NAME=ryanang/microservice:latest
+IMAGE_NAME=ryanang/dop_microservice:latest
 
 build:
 	docker build -t $(IMAGE_NAME) .
 
-push_to_docker_hub: # to be implemented
-	echo "To be implemented"
+push_to_docker_hub:
+	make build
+	docker push $(IMAGE_NAME)
 
+# ======== Development ==========
 start:
 	docker-compose up --build
 
