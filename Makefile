@@ -3,14 +3,16 @@ IMAGE_NAME=ryanang/dop_microservice:latest
 .DEFAULT_GOAL := dev_start # set default target to run
 
 # ======== Development ==========
+# For development server
 dev_start:
 	go run main.go
 
+# For development server (on Docker)
 start:
 	docker-compose up --build
 
-shell: # to enter the shell of the image
-	make build
+shell: build 
+	# to enter the shell of the image
 	docker run -it $(IMAGE_NAME) /bin/sh
 
 # ========= Proto installation and generation ===========
