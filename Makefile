@@ -9,6 +9,7 @@ dev_start:
 
 # For development server (on Docker)
 start:
+	docker-compose down
 	docker-compose up --build
 
 shell: build 
@@ -33,5 +34,6 @@ gen:
 build:
 	docker build -t $(IMAGE_NAME) .
 
-push_to_docker_hub: build
+# push to docker hub
+push: build
 	docker push $(IMAGE_NAME)
