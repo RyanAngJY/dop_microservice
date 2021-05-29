@@ -1,4 +1,4 @@
-FROM golang:1.14-alpine3.11
+FROM docker.io/library/golang:1.14-alpine3.11
 
 # Set the Current Working Directory inside the container
 WORKDIR $GOPATH/src/github.com/dop_microservice
